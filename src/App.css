@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+.app {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(78, 78, 78);
+    line-height: 1.7em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app button {
+    margin: clamp(20px, 2%, 2%) 0;
+    padding: clamp(10px, 1%, 1%);
+    color: rgb(78, 78, 78);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid rgb(78, 78, 78);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.App-link {
-  color: #61dafb;
+.postCard {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    width: clamp( 320px, 50%, 50%);
+    padding: 3%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.postCard div, h1, p{
+    padding: 3% 0;
+}
+
+.postCard h1{
+    font-size: clamp( 16px, 1.5em, 1.5em);
+}
+
+.postCard p{
+    font-size: clamp( 16px, 1em, 1em);
+}
+
+#postImage {
+    border-radius: 10px;
+    object-fit: fill;
+    width: 100%;
 }
