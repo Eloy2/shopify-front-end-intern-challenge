@@ -7,6 +7,16 @@
     line-height: 1.7em;
 }
 
+#title {
+    font-size: 2em;
+    padding: 0;
+    margin: clamp(30px, 2%, 2%) 0;
+}
+
+#subHeading {
+    text-align: center;
+}
+
 .app button {
     margin: clamp(20px, 2%, 2%) 0;
     padding: clamp(10px, 1%, 1%);
@@ -34,6 +44,12 @@
     padding: 3%;
 }
 
+#postImage {
+    border-radius: 10px;
+    object-fit: fill;
+    width: 100%;
+}
+
 .postCard div, h1, p{
     padding: 3% 0;
 }
@@ -46,8 +62,24 @@
     font-size: clamp( 16px, 1em, 1em);
 }
 
-#postImage {
-    border-radius: 10px;
-    object-fit: fill;
-    width: 100%;
+.likeButton {
+    font-size: clamp( 16px, 1.5em, 1.5em);
+    margin: 3% 0;
+    transition: .5s;
+}
+
+.likeButton:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.likedPostButton {
+    font-size: clamp( 16px, 1.5em, 1.5em);
+    margin: 3% 0;
+    transition: .5s;
+}
+
+.likedPostButton:hover {
+    color: rgb(255, 96, 96);
+    cursor: pointer;
 }
