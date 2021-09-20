@@ -14,17 +14,45 @@ interface ApodPosts {
 };
 
 interface Props {
-    post: ApodPosts
+    post: ApodPosts,
+    likedPhotos: ApodPosts[] | undefined,
+    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[] | undefined>>,
+    refreshLikedPhotosPage?: () => void
 }
 
-const PostCard: FC<Props> = ( { post } ) => {
+const PostCard: FC<Props> = ( { post, likedPhotos, setLikedPhotos } ) => {
     const  [liked, setLiked ] = useState(false)
 
-    function addToLikedPhotos() {
+    useEffect(() => {
+        const likedPhotos = JSON.parse(localStorage.getItem("eloysApodAppLikedPhotos") || "[]")
+        likedPhotos.forEach((photo: ApodPosts) => {
+            if (photo.date === post.date) {
+                setLiked(true)
+            }
+        })
+    }, [post.date])
+
+    function updateLikedPhotos() {
         if (localStorage.getItem("eloysApodAppLikedPhotos")) {
-            console.log(JSON.parse(localStorage.getItem("eloysApodAppLikedPhotos") || "[]"))
+            if (liked) { // remove
+                // remove from local storage
+                const localStoragelikedPhotos = JSON.parse(localStorage.getItem("eloysApodAppLikedPhotos") || "[]")
+                const updatedPhotos = localStoragelikedPhotos.filter((p: ApodPosts) => p.date !== post.date)
+                localStorage.setItem("eloysApodAppLikedPhotos", JSON.stringify(updatedPhotos))
+                setLiked(false)
+                // remove from likedPhotos
+                const copyOfLikedPhotos = likedPhotos
+                const updatedLikedPhotos = copyOfLikedPhotos?.filter((p: ApodPosts) => p.date !== post.date)
+                setLikedPhotos(updatedLikedPhotos)
+            } else { // add
+                const localStoragelikedPhotos = JSON.parse(localStorage.getItem("eloysApodAppLikedPhotos") || "[]")
+                localStoragelikedPhotos.push(post)
+                localStorage.setItem("eloysApodAppLikedPhotos", JSON.stringify(localStoragelikedPhotos))
+                setLiked(true)
+            }
         } else {
             localStorage.setItem("eloysApodAppLikedPhotos", JSON.stringify([post]))
+            setLiked(true)
         }
     }
 
@@ -36,7 +64,7 @@ const PostCard: FC<Props> = ( { post } ) => {
                     <img id="postImage" alt={post.title} src={post.url}/>
                 :
                     <h1>
-                        Sorry no image available. 
+                        Sorry, no image available. 
                         I will add support for other media types in the future :D
                     </h1>
                 }
@@ -44,10 +72,10 @@ const PostCard: FC<Props> = ( { post } ) => {
             <h1>{post.title} - {post.date}</h1>
             <p>{post.explanation}</p>
             <FontAwesomeIcon 
-                icon={faHeart} 
-                title="Add To Liked Photos" 
-                className="likeButton"
-                onClick={() => addToLikedPhotos()}
+                icon={faHeart}
+                title={liked ? "Remove From Liked Photos" : "Add To Liked Photos"}
+                className={liked ? "likedPostButton" : "likeButton"}
+                onClick={() => updateLikedPhotos()}
                 />
         </div>
     )

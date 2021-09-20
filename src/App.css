@@ -19,8 +19,14 @@
 
 .app button {
     margin: clamp(20px, 2%, 2%) 0;
-    padding: clamp(10px, 1%, 1%);
+    padding: clamp(7px, 1%, 1%);
     color: rgb(78, 78, 78);
+}
+
+.buttonsDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 320px;
 }
 
 .loader {
@@ -76,6 +82,7 @@
 .likedPostButton {
     font-size: clamp( 16px, 1.5em, 1.5em);
     margin: 3% 0;
+    color: red;
     transition: .5s;
 }
 
