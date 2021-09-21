@@ -22,12 +22,11 @@ const HomePage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
 
     return (
         <div className="app">
-            <h1 id="title">Spacestagram</h1>
+            <h1 id="title">SpaceStagram</h1>
             <h2 id="subHeading" >Brought to you by NASA’s Astronomy Photo of the Day (APOD) API</h2>
             <div className="buttonsDiv">
                 <button onClick={() => window.location.reload()}>Click To Refresh</button>
                 <button onClick={() => window.location.href = "/LikedPhotosPage"}>Liked Photos</button>
-                <button>Change Theme</button>
             </div>
             {apodPosts ? 
                 apodPosts.map( post => (

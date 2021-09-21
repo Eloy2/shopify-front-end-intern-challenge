@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faClipboard } from '@fortawesome/free-solid-svg-icons'
 import '../App.css';
 
 interface ApodPosts {
@@ -71,12 +71,20 @@ const PostCard: FC<Props> = ( { post, likedPhotos, setLikedPhotos } ) => {
             </div>
             <h1>{post.title} - {post.date}</h1>
             <p>{post.explanation}</p>
-            <FontAwesomeIcon 
-                icon={faHeart}
-                title={liked ? "Remove From Liked Photos" : "Add To Liked Photos"}
-                className={liked ? "likedPostButton" : "likeButton"}
-                onClick={() => updateLikedPhotos()}
-                />
+            <div className="iconDiv">
+                <FontAwesomeIcon 
+                    icon={faHeart}
+                    title={liked ? "Remove From Liked Photos" : "Add To Liked Photos"}
+                    className={liked ? "likedPostButton" : "likeButton"}
+                    onClick={() => updateLikedPhotos()}
+                    />
+                <FontAwesomeIcon 
+                    icon={faClipboard}
+                    title="Copy link to clipboard. For Sharing :D"
+                    className={"clipboard"}
+                    onClick={() => navigator.clipboard.writeText(post.url)}
+                    />
+            </div>
         </div>
     )
 }
