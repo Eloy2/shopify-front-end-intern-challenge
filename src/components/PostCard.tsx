@@ -15,8 +15,8 @@ interface ApodPosts {
 
 interface Props {
     post: ApodPosts,
-    likedPhotos: ApodPosts[] | undefined,
-    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[] | undefined>>,
+    likedPhotos: ApodPosts[],
+    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[]>>,
     refreshLikedPhotosPage?: () => void
 }
 
@@ -43,7 +43,7 @@ const PostCard: FC<Props> = ( { post, likedPhotos, setLikedPhotos } ) => {
                 // remove from likedPhotos
                 const copyOfLikedPhotos = likedPhotos
                 const updatedLikedPhotos = copyOfLikedPhotos?.filter((p: ApodPosts) => p.date !== post.date)
-                setLikedPhotos(updatedLikedPhotos)
+                setLikedPhotos(updatedLikedPhotos || [])
             } else { // add
                 const localStoragelikedPhotos = JSON.parse(localStorage.getItem("eloysApodAppLikedPhotos") || "[]")
                 localStoragelikedPhotos.push(post)

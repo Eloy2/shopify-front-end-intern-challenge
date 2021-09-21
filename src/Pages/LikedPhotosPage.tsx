@@ -4,8 +4,8 @@ import PostCard from '../components/PostCard';
 import "../App.css";
 
 interface Props {
-    likedPhotos: ApodPosts[] | undefined,
-    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[] | undefined>>
+    likedPhotos: ApodPosts[],
+    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[]>>
 }
 
 const LikedPhotosPage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
@@ -21,7 +21,7 @@ const LikedPhotosPage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
             <h1 id="title">Liked Photos</h1>
             <h2 id="subHeading">Here you can view all your liked photos</h2>
             <button onClick={() => window.location.href = "/"}>Back To Home</button>
-            {likedPhotos ? 
+            {likedPhotos.length > 0 ? 
                 likedPhotos.map( photo => (
                     <PostCard 
                         key={photo.date} 

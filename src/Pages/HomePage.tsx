@@ -4,8 +4,8 @@ import axios from 'axios';
 import PostCard from "../components/PostCard";
 
 interface Props {
-    likedPhotos: ApodPosts[] | undefined
-    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[] | undefined>>
+    likedPhotos: ApodPosts[]
+    setLikedPhotos: React.Dispatch<React.SetStateAction<ApodPosts[]>>
 }
 
 const HomePage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
@@ -24,6 +24,7 @@ const HomePage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
         <div className="app">
             <h1 id="title">SpaceStagram</h1>
             <h2 id="subHeading" >Brought to you by NASA’s Astronomy Photo of the Day (APOD) API</h2>
+            <h2 id="subHeading" >Displays random list of APOD images</h2>
             <div className="buttonsDiv">
                 <button onClick={() => window.location.reload()}>Click To Refresh</button>
                 <button onClick={() => window.location.href = "/LikedPhotosPage"}>Liked Photos</button>

@@ -5,7 +5,7 @@ import HomePage from "./Pages/HomePage";
 import LikedPhotosPage from "./Pages/LikedPhotosPage";
 
 function App() {
-    const [ likedPhotos, setLikedPhotos ] = useState< ApodPosts[] >();
+    const [ likedPhotos, setLikedPhotos ] = useState< ApodPosts[] >([]);
 
     return (
         <>
