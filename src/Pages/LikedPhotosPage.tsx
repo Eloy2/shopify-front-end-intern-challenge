@@ -31,7 +31,7 @@ const LikedPhotosPage: FC<Props> = ( { likedPhotos, setLikedPhotos } ) => {
                     />
                 ))
                 :
-                <h1>You Currently Have No liked Photos D:</h1>
+                <h1>You Have No Liked Photos D:</h1>
             }
         </div>
     );
